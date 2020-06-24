@@ -158,6 +158,14 @@ void MyAnalysis::Loop(TString fname, TString data, TString dataset ,TString year
    TH2D *h2_BTaggingEff_Num_c      = new TH2D("h2_BTaggingEff_Num_c"     , ";p_{T} [GeV];#eta", 10 , ptBins, 3 , etaBins);
    TH2D *h2_BTaggingEff_Num_udsg   = new TH2D("h2_BTaggingEff_Num_udsg"  , ";p_{T} [GeV];#eta", 10 , ptBins, 3 , etaBins); 
 
+   TH2F *h2_OnZvsMET = new TH2F("h2_OnZvsMET","OnZ vs MET;OnZ;MET [GeV]",4,-1,2,10,0,200);
+   TH2F *h2_OnZvsjet = new TH2F("h2_OnZvsjet","OnZ vs jet;OnZ;jet",4,-1,3,8,-1,7);
+   TH2F *h2_OnZvsbjet = new TH2F("h2_OnZvsbjet","OnZ vs bjet;OnZ;bjet",4,-1,3,8,-1,7);
+   TH2F *h2_jetvsbjet = new TH2F("h2_jetvsbjet","jet vs bjet;jet;bjet",8,-1,7,8,-1,7);
+   TH2F *h2_jetvsMET = new TH2F("h2_jetvsMET","jet vs MET;jet;MET [GeV]",8,-1,7,10,0,200);
+   TH2F *h2_bjetvsMET = new TH2F("h2_bjetvsMET","bjet vs MET;bjet;MET [GeV]",8,-1,7,10,0,200);
+   
+   TH2F *h2_FFvsRegion = new TH2F("h2_FFvsRegion","FF vs Region;FF region;Selection criteria",6,0,6,8,0,8);
 
   typedef vector<TH1F*> Dim1;
   typedef vector<Dim1> Dim2;
@@ -414,6 +422,8 @@ void MyAnalysis::Loop(TString fname, TString data, TString dataset ,TString year
   double P_bjet_mc;
   int nAccept=0;
   int nbjet;
+  int nTight;// # of tight leptons
+  bool ARveto;
   float t1,t2,t3,t4;
   float z1,z2;
   float Topmass=0;
@@ -429,12 +439,18 @@ void MyAnalysis::Loop(TString fname, TString data, TString dataset ,TString year
   Long64_t nentries = fChain->GetEntriesFast();
   Long64_t nbytes = 0, nb = 0;
   Long64_t ntr = fChain->GetEntries ();
+    
+for (int f=0;f<4;f++){
+    //f=0 SR
+    //f=1 MR
+    //f=2 antiMR
+    //f=3 AR
   for (Long64_t jentry=0; jentry<nentries;jentry++) {
 //  for (Long64_t jentry=0; jentry<100;jentry++) {
     Long64_t ientry = LoadTree(jentry);
     if (ientry < 0) break;
     nb = fChain->GetEntry(jentry);   nbytes += nb;
-    displayProgress(jentry, ntr) ;
+    displayProgress(jentry+f*ntr, ntr*4) ;
 
     triggerPassEE = false;
     triggerPassEMu = false;
@@ -593,11 +609,12 @@ void MyAnalysis::Loop(TString fname, TString data, TString dataset ,TString year
 // lepton selection
   selectedLeptons = new std::vector<lepton_candidate*>();//typlical ordered by pT
   selectedLeptons_copy = new std::vector<lepton_candidate*>();// ordered by [e, mu , bachelor lepton ]
+  nTight=0;
 // electron
     for (int l=0;l<gsf_pt->size();l++){
       elePt = (*gsf_ecalTrkEnergyPostCorr)[l]*sin(2.*atan(exp(-1.*(*gsf_eta)[l]))) ;
       if(elePt <20 || abs((*gsf_eta)[l]) > 2.4 || (abs((*gsf_sc_eta)[l])> 1.4442 && (abs((*gsf_sc_eta)[l])< 1.566))) continue;
-      if(!(*gsf_VID_cutBasedElectronID_Fall17_94X_V2_tight)[l]) continue;
+      if((*gsf_VID_cutBasedElectronID_Fall17_94X_V2_tight)[l]&&f==0) {
       selectedLeptons->push_back(new lepton_candidate(elePt,(*gsf_eta)[l],(*gsf_phi)[l],(*gsf_charge)[l],l,1));
       selectedLeptons_copy->push_back(new lepton_candidate(elePt,(*gsf_eta)[l],(*gsf_phi)[l],(*gsf_charge)[l],l,1));
       if (data == "mc"){
@@ -610,7 +627,23 @@ void MyAnalysis::Loop(TString fname, TString data, TString dataset ,TString year
           nominalWeights[1] = nominalWeights[1] * scale_factor(&sf_Ele_ID_H ,(*gsf_sc_eta)[l],(*gsf_pt)[l],"");
           sysUpWeights[1] = sysUpWeights[1] * scale_factor(&sf_Ele_ID_H ,(*gsf_sc_eta)[l],(*gsf_pt)[l],"up");
           sysDownWeights[1] = sysDownWeights[1] * scale_factor(&sf_Ele_ID_H ,(*gsf_sc_eta)[l],(*gsf_pt)[l],"down");
+         }
       }
+      if((*gsf_VID_cutBasedElectronID_Fall17_94X_V2_loose)[l]&&f>0){
+        if(f==3){
+           selectedLeptons->push_back(new lepton_candidate(elePt,(*gsf_eta)[l],(*gsf_phi)[l],(*gsf_charge)[l],l,1));
+           selectedLeptons_copy->push_back(new lepton_candidate(elePt,(*gsf_eta)[l],(*gsf_phi)[l],(*gsf_charge)[l],l,1));
+           if((*gsf_VID_cutBasedElectronID_Fall17_94X_V2_tight)[l]) nTight++;
+          }
+        if((*gsf_VID_cutBasedElectronID_Fall17_94X_V2_tight)[l]&&f==1){
+            selectedLeptons->push_back(new lepton_candidate(elePt,(*gsf_eta)[l],(*gsf_phi)[l],(*gsf_charge)[l],l,1));
+            selectedLeptons_copy->push_back(new lepton_candidate(elePt,(*gsf_eta)[l],(*gsf_phi)[l],(*gsf_charge)[l],l,1));
+        }
+        if (!(*gsf_VID_cutBasedElectronID_Fall17_94X_V2_tight)[l]&&f==2){
+            selectedLeptons->push_back(new lepton_candidate(elePt,(*gsf_eta)[l],(*gsf_phi)[l],(*gsf_charge)[l],l,1));
+            selectedLeptons_copy->push_back(new lepton_candidate(elePt,(*gsf_eta)[l],(*gsf_phi)[l],(*gsf_charge)[l],l,1));
+           }
+        }
     }
 // Muon
     for (int l=0;l<mu_gt_pt->size();l++){
@@ -622,8 +655,7 @@ void MyAnalysis::Loop(TString fname, TString data, TString dataset ,TString year
          if ((*mu_mc_index)[l]<0) muPtSFRochester = rc.kSmearMC((*mu_gt_charge)[l], (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l], (*mu_trackerLayersWithMeasurement)[l] , gRandom->Rndm(),0, 0);
       }
       if(muPtSFRochester * (*mu_gt_pt)[l] <20 || abs((*mu_gt_eta)[l]) > 2.4) continue;
-      if(!(*mu_isTightMuon)[l]) continue;
-      if((*mu_pfIsoDbCorrected04)[l] > 0.15) continue;
+      if((*mu_isTightMuon)[l] && (*mu_pfIsoDbCorrected04)[l] < 0.15 && f==0){
       selectedLeptons->push_back(new lepton_candidate(muPtSFRochester * (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l],(*mu_gt_charge)[l],l,10));
       selectedLeptons_copy->push_back(new lepton_candidate(muPtSFRochester * (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l],(*mu_gt_charge)[l],l,10));
       if (data == "mc" && year == "2016") {
@@ -647,14 +679,32 @@ void MyAnalysis::Loop(TString fname, TString data, TString dataset ,TString year
           nominalWeights[3] = nominalWeights[3] * scale_factor(&sf_Mu_ISO_H, (*mu_gt_pt)[l], abs((*mu_gt_eta)[l]),"");
           sysUpWeights[3] = sysUpWeights[3] * scale_factor(&sf_Mu_ISO_H, (*mu_gt_pt)[l], abs((*mu_gt_eta)[l]),"up");
           sysDownWeights[3] = sysDownWeights[3] * scale_factor(&sf_Mu_ISO_H, (*mu_gt_pt)[l], abs((*mu_gt_eta)[l]),"down");
+       }
       }
+      if((*mu_isLooseMuon)[l] && (*mu_pfIsoDbCorrected04)[l] > 0.15&&f>0){
+          if(f==3){
+          selectedLeptons->push_back(new lepton_candidate(muPtSFRochester * (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l],(*mu_gt_charge)[l],l,10));
+          selectedLeptons_copy->push_back(new lepton_candidate(muPtSFRochester * (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l],(*mu_gt_charge)[l],l,10));
+          if((*mu_isTightMuon)[l]) nTight++;
+          }
+          if((*mu_isTightMuon)[l]&&f==1){
+              selectedLeptons->push_back(new lepton_candidate(muPtSFRochester * (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l],(*mu_gt_charge)[l],l,10));
+              selectedLeptons_copy->push_back(new lepton_candidate(muPtSFRochester * (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l],(*mu_gt_charge)[l],l,10));
+          }
+          if (!(*mu_isTightMuon)[l]&&f==2){
+              selectedLeptons->push_back(new lepton_candidate(muPtSFRochester * (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l],(*mu_gt_charge)[l],l,10));
+              selectedLeptons_copy->push_back(new lepton_candidate(muPtSFRochester * (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l],(*mu_gt_charge)[l],l,10));
+          }
+        }
     }
+    ARveto=false;
+    if(f==3&&nTight!=2) ARveto=true;
     sort(selectedLeptons->begin(), selectedLeptons->end(), ComparePtLep);
 // trilepton selection
 //cout<<ev_event<<"  "<<triggerPass<<"  "<<metFilterPass<<"  "<<selectedLeptons->size()<<endl;
     if(selectedLeptons->size()!=3 ||
       ((*selectedLeptons)[0]->pt_ <27) ||
-      (abs((*selectedLeptons)[0]->charge_ + (*selectedLeptons)[1]->charge_ + (*selectedLeptons)[2]->charge_) != 1)) {
+      (abs((*selectedLeptons)[0]->charge_ + (*selectedLeptons)[1]->charge_ + (*selectedLeptons)[2]->charge_) != 1) || ARveto) {
 //      ((*selectedLeptons)[0]->lep_ + (*selectedLeptons)[1]->lep_ != 11 && ((*selectedLeptons)[0]->p4_ + (*selectedLeptons)[1]->p4_).M()<106 && ((*selectedLeptons)[0]->p4_ + (*selectedLeptons)[1]->p4_).M()>76) ||
 //      ((*selectedLeptons)[0]->p4_ + (*selectedLeptons)[1]->p4_).M()<20) {
       for (int l=0;l<selectedLeptons->size();l++){
@@ -669,7 +719,7 @@ void MyAnalysis::Loop(TString fname, TString data, TString dataset ,TString year
       delete selectedLeptons_copy;
       continue;
     }
-
+      
     if ((*selectedLeptons)[0]->lep_ + (*selectedLeptons)[1]->lep_ + (*selectedLeptons)[2]->lep_ == 3) ch = 0;//eee channel
     if ((*selectedLeptons)[0]->lep_ + (*selectedLeptons)[1]->lep_ + (*selectedLeptons)[2]->lep_ == 12) {
         ch = 1;//emul channel
@@ -1035,6 +1085,36 @@ void MyAnalysis::Loop(TString fname, TString data, TString dataset ,TString year
     
     weight_lepC = weight_lep;
     if (ch==1&&compete) weight_lepC = weight_lepB;
+      
+    if(ch==1){
+       h2_FFvsRegion->Fill(f+1,1,weight_lep);
+       if(OnZ){
+        h2_FFvsRegion->Fill(f+1,2,weight_lep);
+        }
+       else{
+        h2_FFvsRegion->Fill(f+1,3,weight_lep);
+           if(nbjet==0){
+              h2_FFvsRegion->Fill(f+1,4,weight_lepB);
+           }
+           if(nbjet==1){
+               h2_FFvsRegion->Fill(f+1,5,weight_lepB);
+           }
+           if(nbjet>1){
+               h2_FFvsRegion->Fill(f+1,6,weight_lepB);
+           }
+       }
+      }
+      
+  if (f==0) {
+      
+    if(ch==1){
+    h2_jetvsMET->Fill(selectedJets->size(),MET_FinalCollection_Pt,weight_lep);
+    h2_OnZvsjet->Fill(OnZ?1:0,selectedJets->size(),weight_lepC);
+    h2_OnZvsMET->Fill(OnZ?1:0,MET_FinalCollection_Pt,weight_lepC);
+    h2_bjetvsMET->Fill(nbjet,MET_FinalCollection_Pt,weight_lepB);
+    h2_OnZvsbjet->Fill(OnZ?1:0,nbjet,weight_lepB);
+    h2_jetvsbjet->Fill(selectedJets->size(),nbjet,weight_lepB);
+    }
       
     Hists[ch][0][0]->Fill((*selectedLeptons)[0]->pt_,weight_lep);
     Hists[ch][0][1]->Fill((*selectedLeptons)[0]->eta_,weight_lep);
@@ -1643,6 +1723,7 @@ void MyAnalysis::Loop(TString fname, TString data, TString dataset ,TString year
     Hists[ch][14][31]->Fill(Zmass,weight_lepB);
     Hists[ch][14][32]->Fill(LFVTopmass,weight_lepB);
     }
+  }
       
     for (int l=0;l<selectedLeptons->size();l++){
       delete (*selectedLeptons)[l];
@@ -1665,7 +1746,8 @@ void MyAnalysis::Loop(TString fname, TString data, TString dataset ,TString year
     selectedJets_copy->shrink_to_fit();
     delete selectedJets_copy;
 
-    nAccept++;
+    if (f==0) nAccept++;
+   }
   } //end of event loop
   cout<<endl<<"from "<<ntr<<" events, "<<nAccept<<" events are accepted"<<endl;
 
@@ -1701,6 +1783,15 @@ void MyAnalysis::Loop(TString fname, TString data, TString dataset ,TString year
    h2_BTaggingEff_Num_b     ->Write("",TObject::kOverwrite);
    h2_BTaggingEff_Num_c     ->Write("",TObject::kOverwrite);
    h2_BTaggingEff_Num_udsg  ->Write("",TObject::kOverwrite);
+    
+    h2_jetvsMET->Write("",TObject::kOverwrite);
+    h2_OnZvsjet->Write("",TObject::kOverwrite);
+    h2_OnZvsMET->Write("",TObject::kOverwrite);
+    h2_bjetvsMET->Write("",TObject::kOverwrite);
+    h2_OnZvsbjet->Write("",TObject::kOverwrite);
+    h2_jetvsbjet->Write("",TObject::kOverwrite);
+    
+    h2_FFvsRegion->Write("",TObject::kOverwrite);
 
    delete h2_BTaggingEff_Denom_b;
    delete h2_BTaggingEff_Denom_c;
@@ -1709,5 +1800,14 @@ void MyAnalysis::Loop(TString fname, TString data, TString dataset ,TString year
    delete h2_BTaggingEff_Num_c;
    delete h2_BTaggingEff_Num_udsg;
 
+   delete h2_jetvsMET;
+   delete h2_OnZvsjet;
+   delete h2_OnZvsMET;
+   delete h2_bjetvsMET;
+   delete h2_OnZvsbjet;
+   delete h2_jetvsbjet;
+    
+   delete h2_FFvsRegion;
+    
   file_out.Close() ;
 }
