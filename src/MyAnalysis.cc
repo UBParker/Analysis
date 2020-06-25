@@ -423,6 +423,8 @@ void MyAnalysis::Loop(TString fname, TString data, TString dataset ,TString year
   int nAccept=0;
   int nbjet;
   int nTight;// # of tight leptons
+  int nLoose;// # of loose leptons                                                                                                                                                  
+  int nAnti;// # of anti-selected leptons                                                                                                                                                  
   bool ARveto;
   float t1,t2,t3,t4;
   float z1,z2;
@@ -442,7 +444,7 @@ void MyAnalysis::Loop(TString fname, TString data, TString dataset ,TString year
     
 for (int f=0;f<4;f++){
     //f=0 SR
-    //f=1 MR
+    //f=1 MR combining MR == 2 loose and 1 anti-selected 
     //f=2 antiMR
     //f=3 AR
   for (Long64_t jentry=0; jentry<nentries;jentry++) {
@@ -610,10 +612,17 @@ for (int f=0;f<4;f++){
   selectedLeptons = new std::vector<lepton_candidate*>();//typlical ordered by pT
   selectedLeptons_copy = new std::vector<lepton_candidate*>();// ordered by [e, mu , bachelor lepton ]
   nTight=0;
+  nLoose=0;
+  nAnti=0;
+
+
 // electron
+  int minelpt;
+  minelpt = 20;
+  if (f>0) minelpt= 15;
     for (int l=0;l<gsf_pt->size();l++){
       elePt = (*gsf_ecalTrkEnergyPostCorr)[l]*sin(2.*atan(exp(-1.*(*gsf_eta)[l]))) ;
-      if(elePt <20 || abs((*gsf_eta)[l]) > 2.4 || (abs((*gsf_sc_eta)[l])> 1.4442 && (abs((*gsf_sc_eta)[l])< 1.566))) continue;
+      if(elePt < minelpt || abs((*gsf_eta)[l]) > 2.4 || (abs((*gsf_sc_eta)[l])> 1.4442 && (abs((*gsf_sc_eta)[l])< 1.566))) continue;
       if((*gsf_VID_cutBasedElectronID_Fall17_94X_V2_tight)[l]&&f==0) {
       selectedLeptons->push_back(new lepton_candidate(elePt,(*gsf_eta)[l],(*gsf_phi)[l],(*gsf_charge)[l],l,1));
       selectedLeptons_copy->push_back(new lepton_candidate(elePt,(*gsf_eta)[l],(*gsf_phi)[l],(*gsf_charge)[l],l,1));
@@ -630,19 +639,22 @@ for (int f=0;f<4;f++){
          }
       }
       if((*gsf_VID_cutBasedElectronID_Fall17_94X_V2_loose)[l]&&f>0){
-        if(f==3){
+        nLoose++;
+        if(f==1||f==2){
            selectedLeptons->push_back(new lepton_candidate(elePt,(*gsf_eta)[l],(*gsf_phi)[l],(*gsf_charge)[l],l,1));
            selectedLeptons_copy->push_back(new lepton_candidate(elePt,(*gsf_eta)[l],(*gsf_phi)[l],(*gsf_charge)[l],l,1));
            if((*gsf_VID_cutBasedElectronID_Fall17_94X_V2_tight)[l]) nTight++;
-          }
-        if((*gsf_VID_cutBasedElectronID_Fall17_94X_V2_tight)[l]&&f==1){
-            selectedLeptons->push_back(new lepton_candidate(elePt,(*gsf_eta)[l],(*gsf_phi)[l],(*gsf_charge)[l],l,1));
-            selectedLeptons_copy->push_back(new lepton_candidate(elePt,(*gsf_eta)[l],(*gsf_phi)[l],(*gsf_charge)[l],l,1));
+           if (!(*gsf_VID_cutBasedElectronID_Fall17_94X_V2_tight)[l] && f==1 ){
+             nAnti++;
+	     selectedLeptons->push_back(new lepton_candidate(elePt,(*gsf_eta)[l],(*gsf_phi)[l],(*gsf_charge)[l],l,1));
+	     selectedLeptons_copy->push_back(new lepton_candidate(elePt,(*gsf_eta)[l],(*gsf_phi)[l],(*gsf_charge)[l],l,1));
+           }  
         }
-        if (!(*gsf_VID_cutBasedElectronID_Fall17_94X_V2_tight)[l]&&f==2){
+        else if (f==3){
             selectedLeptons->push_back(new lepton_candidate(elePt,(*gsf_eta)[l],(*gsf_phi)[l],(*gsf_charge)[l],l,1));
             selectedLeptons_copy->push_back(new lepton_candidate(elePt,(*gsf_eta)[l],(*gsf_phi)[l],(*gsf_charge)[l],l,1));
-           }
+            if((*gsf_VID_cutBasedElectronID_Fall17_94X_V2_tight)[l]) nTight++;
+            }
         }
     }
 // Muon
@@ -654,7 +666,7 @@ for (int f=0;f<4;f++){
          if ((*mu_mc_index)[l]!=-1 && abs((*mc_pdgId)[(*mu_mc_index)[l]]) == 13) muPtSFRochester = rc.kSpreadMC((*mu_gt_charge)[l], (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l], (*mc_pt)[(*mu_mc_index)[l]],0, 0);
          if ((*mu_mc_index)[l]<0) muPtSFRochester = rc.kSmearMC((*mu_gt_charge)[l], (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l], (*mu_trackerLayersWithMeasurement)[l] , gRandom->Rndm(),0, 0);
       }
-      if(muPtSFRochester * (*mu_gt_pt)[l] <20 || abs((*mu_gt_eta)[l]) > 2.4) continue;
+      if(muPtSFRochester * (*mu_gt_pt)[l] < minelpt || abs((*mu_gt_eta)[l]) > 2.4) continue;
       if((*mu_isTightMuon)[l] && (*mu_pfIsoDbCorrected04)[l] < 0.15 && f==0){
       selectedLeptons->push_back(new lepton_candidate(muPtSFRochester * (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l],(*mu_gt_charge)[l],l,10));
       selectedLeptons_copy->push_back(new lepton_candidate(muPtSFRochester * (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l],(*mu_gt_charge)[l],l,10));
@@ -681,24 +693,33 @@ for (int f=0;f<4;f++){
           sysDownWeights[3] = sysDownWeights[3] * scale_factor(&sf_Mu_ISO_H, (*mu_gt_pt)[l], abs((*mu_gt_eta)[l]),"down");
        }
       }
-      if((*mu_isLooseMuon)[l] && (*mu_pfIsoDbCorrected04)[l] > 0.15&&f>0){
-          if(f==3){
+      if((*mu_isLooseMuon)[l] &&f>0){
+	  nLoose++;
+          if(f==1){
           selectedLeptons->push_back(new lepton_candidate(muPtSFRochester * (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l],(*mu_gt_charge)[l],l,10));
           selectedLeptons_copy->push_back(new lepton_candidate(muPtSFRochester * (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l],(*mu_gt_charge)[l],l,10));
           if((*mu_isTightMuon)[l]) nTight++;
+          if (!(*mu_isTightMuon)[l] || (*mu_pfIsoDbCorrected04)[l] > 0.15) nAnti++;
+          
           }
-          if((*mu_isTightMuon)[l]&&f==1){
-              selectedLeptons->push_back(new lepton_candidate(muPtSFRochester * (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l],(*mu_gt_charge)[l],l,10));
-              selectedLeptons_copy->push_back(new lepton_candidate(muPtSFRochester * (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l],(*mu_gt_charge)[l],l,10));
+	  if(f==2&&(*mu_pfIsoDbCorrected04)[l] < 0.15){
+	    selectedLeptons->push_back(new lepton_candidate(muPtSFRochester * (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l],(*mu_gt_charge)[l],l,10));
+	    selectedLeptons_copy->push_back(new lepton_candidate(muPtSFRochester * (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l],(*mu_gt_charge)[l],l,10));
+	    if((*mu_isTightMuon)[l]) nTight++;
+
           }
-          if (!(*mu_isTightMuon)[l]&&f==2){
+
+          if (f==3&& (*mu_pfIsoDbCorrected04)[l] < 0.15){
+	      if((*mu_isTightMuon)[l]) nTight++;
               selectedLeptons->push_back(new lepton_candidate(muPtSFRochester * (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l],(*mu_gt_charge)[l],l,10));
               selectedLeptons_copy->push_back(new lepton_candidate(muPtSFRochester * (*mu_gt_pt)[l],(*mu_gt_eta)[l],(*mu_gt_phi)[l],(*mu_gt_charge)[l],l,10));
           }
         }
     }
     ARveto=false;
-    if(f==3&&nTight!=2) ARveto=true;
+    if(f==1&&nLoose<2&& nAnti<1 ) ARveto=true;
+    if(f==2&&nLoose<3 ) ARveto=true;
+    if(f==3&&nTight<2 ) ARveto=true;
     sort(selectedLeptons->begin(), selectedLeptons->end(), ComparePtLep);
 // trilepton selection
 //cout<<ev_event<<"  "<<triggerPass<<"  "<<metFilterPass<<"  "<<selectedLeptons->size()<<endl;
