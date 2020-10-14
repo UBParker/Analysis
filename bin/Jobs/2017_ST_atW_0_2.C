@@ -1,0 +1,46 @@
+#include "MyAnalysis.h"
+main(){
+    TChain* ch    = new TChain("IIHEAnalysis") ;
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/T");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/_");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/t");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/W");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/_");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/a");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/n");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/t");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/i");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/t");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/o");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/p");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/_");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/5");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/f");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/_");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/N");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/o");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/F");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/u");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/l");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/l");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/y");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/H");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/a");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/d");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/r");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/o");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/n");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/i");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/c");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/D");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/e");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/c");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/a");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/y");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/s");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/_");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/T");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/crab_ST_tW_antitop/191201_125119/0000/u");
+    MyAnalysis t1(ch);
+    t1.Loop("/afs/cern.ch/user/a/asparker/public/LFVTopCode_MyFork/Trilepton_Selection/TopLFV/hists/2017/2017_ST_atW_0_2.root", "mc" , "" , "2017" , "" , 19.47 , 41.53 , 5592819);
+}

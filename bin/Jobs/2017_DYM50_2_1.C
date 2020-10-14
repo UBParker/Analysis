@@ -1,0 +1,46 @@
+#include "MyAnalysis.h"
+main(){
+    TChain* ch    = new TChain("IIHEAnalysis") ;
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002//");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/c");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/m");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/s");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002//");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/s");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/t");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/o");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/r");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/e");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002//");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/u");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/s");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/e");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/r");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002//");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/s");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/c");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/h");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/e");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/n");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/a");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/r");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/a");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002//");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/M");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/C");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/_");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/R");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/u");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/n");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/I");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/I");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/_");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/2");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/0");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/1");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/7");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002//");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/crab_DYJetsToLL_M-50_v14_ext1-v1/191201_122119/0002/D");
+    MyAnalysis t1(ch);
+    t1.Loop("/afs/cern.ch/user/a/asparker/public/LFVTopCode_MyFork/Trilepton_Selection/TopLFV/hists/2017/2017_DYM50_2_1.root", "mc" , "" , "2017" , "" , 5765.4 , 41.53 , 84597528);
+}

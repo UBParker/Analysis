@@ -1,0 +1,46 @@
+#include "MyAnalysis.h"
+main(){
+    TChain* ch    = new TChain("IIHEAnalysis") ;
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/a");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/b");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/_");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/T");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/T");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/Z");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/T");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/o");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/Q");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/Q");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/_");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/v");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/1");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/4");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/_");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/v");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/1");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000//");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/1");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/9");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/1");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/2");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/0");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/1");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/_");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/1");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/3");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/2");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/9");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/5");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/8");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000//");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/0");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/0");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/0");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/0");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000//");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/o");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/u");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToQQ_v14_v1/191201_132958/0000/t");
+    MyAnalysis t1(ch);
+    t1.Loop("/afs/cern.ch/user/a/asparker/public/LFVTopCode_MyFork/Trilepton_Selection/TopLFV/hists/2017/2017_TTZToQQ_0_3.root", "mc" , "" , "2017" , "" , 0.5297 , 41.53 , 356286);
+}

@@ -1,0 +1,46 @@
+#include "MyAnalysis.h"
+main(){
+    TChain* ch    = new TChain("IIHEAnalysis") ;
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/a");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/8");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000//");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/c");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/r");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/a");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/b");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/_");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/W");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/Z");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/T");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/o");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/2");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/L");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/2");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/Q");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000//");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/1");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/9");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/1");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/2");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/0");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/1");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/_");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/1");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/2");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/4");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/5");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/0");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/9");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000//");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/0");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/0");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/0");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/0");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000//");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/o");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/u");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/t");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/crab_WZTo2L2Q/191201_124509/0000/f");
+    MyAnalysis t1(ch);
+    t1.Loop("/afs/cern.ch/user/a/asparker/public/LFVTopCode_MyFork/Trilepton_Selection/TopLFV/hists/2017/2017_WZTo2L2Q_0_3.root", "mc" , "" , "2017" , "" , 5.595 , 41.53 , 16620982);
+}

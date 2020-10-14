@@ -1,0 +1,46 @@
+#include "MyAnalysis.h"
+main(){
+    TChain* ch    = new TChain("IIHEAnalysis") ;
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/a");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/d");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/s");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/p");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/i");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/n");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/-");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/p");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/y");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/t");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/h");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/i");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/a");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/8");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000//");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/c");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/r");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/a");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/b");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/_");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/T");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/T");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/W");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/J");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/e");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/t");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/s");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/T");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/o");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/L");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/N");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/u");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/_");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/v");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/1");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/4");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/_");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/v");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000/1");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/crab_TTWJetsToLNu_v14_v1/191201_125315/0000//");
+    MyAnalysis t1(ch);
+    t1.Loop("/afs/cern.ch/user/a/asparker/public/LFVTopCode_MyFork/Trilepton_Selection/TopLFV/hists/2017/2017_TTWJetsToLNu_0_3.root", "mc" , "" , "2017" , "" , 0.2043 , 41.53 , 2678775);
+}

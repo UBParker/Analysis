@@ -1,0 +1,46 @@
+#include "MyAnalysis.h"
+main(){
+    TChain* ch    = new TChain("IIHEAnalysis") ;
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/r");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/o");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/o");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/t");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/:");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000//");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000//");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/c");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/m");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/s");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/-");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/x");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/r");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/d");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/-");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/g");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/l");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/o");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/b");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/a");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/l");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/.");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/c");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/e");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/r");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/n");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/.");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/c");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/h");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000//");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000//");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/p");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/n");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/f");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/s");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000//");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/i");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/i");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/h");
+    ch ->Add("/pnfs/iihe/cms/store/user/schenara/MC_RunII_2017/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/crab_TTZToLLNuNu_v14_v1/191201_131835/0000/e");
+    MyAnalysis t1(ch);
+    t1.Loop("/afs/cern.ch/user/a/asparker/public/LFVTopCode_MyFork/Trilepton_Selection/TopLFV/hists/2017/2017_TTZToLLNuNu_0_0.root", "mc" , "" , "2017" , "" , 0.2529 , 41.53 , 3570720);
+}

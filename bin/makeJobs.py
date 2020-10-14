@@ -7,7 +7,7 @@ import Files_2016
 import Files_2017
 import Files_2018
 import Files_2017_A
-
+from GFAL_GetROOTfiles import *
 
 
 
@@ -16,8 +16,8 @@ import argparse
 parser = argparse.ArgumentParser()
 
 parser.add_argument('--v', dest='VERBOSE', default=True)
-parser.add_argument('--l', dest = 'LOCATION', default= '/afs/cern.ch/user/a/asparker/public/LFVTopCode_MyFork/TopLFV/')
-parser.add_argument('--n', dest = 'NAMETAG', default= 'SMEFTfr' )
+parser.add_argument('--l', dest = 'LOCATION', default= '/afs/cern.ch/user/a/asparker/public/LFVTopCode_MyFork/Trilepton_Selection/TopLFV/')
+parser.add_argument('--n', dest = 'NAMETAG', default= 'none' )# if 'none' submit everything otherwise specify a tag to submit
 
 ARGS = parser.parse_args()
 
@@ -35,8 +35,8 @@ data_2017 = False
 mc_2018 = False
 data_2018 = False
 
-SAMPLES.update(Files_2017_A.mc2017_samples)
-SAMPLES.update(Files_2017_A.data2017_samples)
+SAMPLES.update(Files_2017.mc2017_samples)
+SAMPLES.update(Files_2017.data2017_samples)
 
 if mc_2016:
     SAMPLES.update(Files_2016.mc2016_samples)
@@ -58,23 +58,23 @@ rootlib22="".join([s for s in rootlib2.strip().splitlines(True) if s.strip()])
 
 dire = loc+'bin'
 dire_h = loc+'hists/'
+print dire
 nf =40
 
 for key, value in SAMPLES.items():
 #########################################
-    if name  not in key:
-       continue
+    if name != 'none':
+        if name  not in key:
+            continue
     nf = 40
     for idx, S in enumerate(value[0]):
-        for subdir, dirs, files in os.walk(S):
+        print S
+        filelist = GFAL_GetROOTfiles( S ,"srm://maite.iihe.ac.be:8443/srm/managerv2?SFN=" )#"srm://ingrid-se02.cism.ucl.ac.be:8444/srm/managerv2?SFN=/storage/data/cms")
+        for files in filelist:
+        #for subdir, dirs, files in os.walk(S):
             if value[1]=='data': 
                 nf = 255
             sequance = [files[i:i+nf] for i in range(0,len(files),nf)]
-            print value[0]
-
-            print sequance
-
-
             for num,  seq in enumerate(sequance):
 ###############################
 #                if num<18:
@@ -103,12 +103,8 @@ for key, value in SAMPLES.items():
                 'if [ -f "$FILE" ]; then'+ "\n"+\
                 '    rm  ' + SHNAME1.split('.')[0] + "\n"+\
                 'fi'
-                #os.system(" mkdir Jobs")
                 open('Jobs/'+SHNAME, 'wt').write(SHFILE)
-                print "wrote file :"
-                print 'Jobs/'+SHNAME
                 os.system("chmod +x "+'Jobs/'+SHNAME)
-                print "chmod +x "+'Jobs/'+SHNAME
 #                os.system("qsub -q localgrid  -o STDOUT/" + SHNAME1.split('.')[0] + ".stdout -e STDERR/" + SHNAME1.split('.')[0] + ".stderr " + SHNAME)
             break
     if verbose : 

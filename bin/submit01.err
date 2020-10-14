@@ -1,0 +1,2 @@
+g++: error: ../lib/main.so: No such file or directory
+condor_exec.exe: line 4: ./2017_TTZToLLNuNu_0_2: No such file or directory
