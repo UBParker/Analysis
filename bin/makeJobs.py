@@ -64,7 +64,6 @@ nf =40
 
 for key, value in SAMPLES.items():
 #########################################
-<<<<<<< HEAD
     if name != 'none':
         if name  not in key:
             continue
