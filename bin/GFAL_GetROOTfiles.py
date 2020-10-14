@@ -9,7 +9,11 @@ import os
 
 def GFAL_GetROOTfiles( path, gfalstr = "root://cms-xrd-global.cern.ch/" ):
 
-    v = True
+
+
+
+    v = False
+
     if v : print "Using GFAL_GetROOTfiles to get list or .root files located here: {}".format( path )  
 
     testlstxt = "gfal-ls " + gfalstr + path

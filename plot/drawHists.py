@@ -340,7 +340,7 @@ ARGS = parser.parse_args()
 verbose = ARGS.VERBOSE
 HistAddress = ARGS.LOCATION
 
-Samples = ['data.root','TTV.root','WZ.root', 'ZZ.root', 'TTbar.root', 'others.root', 'SMEFTfr_ST_vector_emutu.root', 'SMEFTfr_TT_vector_emutu.root']
+Samples = ['data.root','TTV.root','WZ.root', 'ZZ.root', 'TTbar.root', 'others.root', 'LFVStVecU.root', 'LFVTtVecU.root']
 SamplesName = ['data','TTV','WZ', 'ZZ', 'TTbar', 'others', 'ST_vector_emutu', 'TT_vector_emutu']
 SamplesNameLatex = ['data', 'TTV', 'WZ', 'ZZ', 'TTbar', 'others', 'ST\_vector\_emutu', 'TT\_vector\_emutu']
 
@@ -361,7 +361,7 @@ for numyear, nameyear in enumerate(year):
                 for numvar, namevar in enumerate(variables):
                     h= Files[f].Get(namech + '_' + namereg + '_' + namevar)
                     h.SetFillColor(colors[f])
-                    if 'SMEFTfr' not in Samples[f]:
+                    if 'LFV' not in Samples[f]:
                         h.SetLineColor(colors[0])
                     else:
                         h.SetLineColor(colors[f])
@@ -378,7 +378,7 @@ for numyear, nameyear in enumerate(year):
                 HH=[]
                 HHsignal=[]
                 for f in range(len(Samples)):
-                    if 'SMEFTfr' in Samples[f]:
+                    if 'LFV' in Samples[f]:
                         HHsignal.append(Hists[numyear][f][numch][numreg][numvar])
                     else:
                         HH.append(Hists[numyear][f][numch][numreg][numvar])
@@ -402,7 +402,7 @@ for numreg, namereg in enumerate(regions):
         HH=[]
         HHname=[]
         for f in range(len(Samples)):
-            if 'SMEFTfr' in Samples[f] or 'TTbar' in Samples[f]:
+            if 'LFV' in Samples[f] or 'TTbar' in Samples[f]:
                 HH.append(Hists[0][f][1][numreg][numvar])
                 HHname.append(SamplesName[f])
         compareHists(HH,HHname, 'emul', namereg,namevar,variablesName[numvar])

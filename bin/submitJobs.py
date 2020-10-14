@@ -12,6 +12,7 @@ import argparse
 parser = argparse.ArgumentParser()
 
 parser.add_argument('--v', dest='VERBOSE', default=True)
+
 parser.add_argument('--l', dest = 'LOCATION', default= '/afs/cern.ch/user/a/asparker/public/LFVTopCode_MyFork/Trilepton_Selection/TopLFV/')
 parser.add_argument('--n', dest = 'NAMETAG', default= 'none'  ) # if 'none' then submit everything otherwise only things matching tag
 
@@ -65,9 +66,11 @@ sub1.write(submit+'\n')
 sub1.close()
 
 for key, value in SAMPLES.items():
+
     if name != 'none' :
         if name  not in key:
             continue
+
     year = value[3]
     nf = 40
     for idx, S in enumerate(value[0]):
@@ -75,12 +78,12 @@ for key, value in SAMPLES.items():
             nf = 255
         #for subdir, dirs, files in os.walk(S):
         filelist = GFAL_GetROOTfiles( S ,"srm://maite.iihe.ac.be:8443/srm/managerv2?SFN=" )#"srm://ingrid-se02.cism.ucl.ac.be:8444/srm/managerv2?SFN=/storage/data/cms")           
-        for files in filelist:
-            sequance = [files[i:i+nf] for i in range(0,len(files),nf)]
-            for num,  seq in enumerate(sequance):
+
+        sequance = [filelist[i:i+nf] for i in range(0,len(filelist),nf)]
+        for num,  seq in enumerate(sequance):
                 f = key +'_' + str(idx) +'_' + str(num)
                 subprocess.call('rm '+ dire + year + '/' + f + '.root', shell=True)
                 qsub = "condor_submit Jobs/"+ submitName +" executable=Jobs/"+ f + '.sh'
                 subprocess.call(qsub, shell=True)
-            break
+         #   break
 

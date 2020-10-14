@@ -16,6 +16,7 @@ import argparse
 parser = argparse.ArgumentParser()
 
 parser.add_argument('--v', dest='VERBOSE', default=True)
+
 parser.add_argument('--l', dest = 'LOCATION', default= '/afs/cern.ch/user/a/asparker/public/LFVTopCode_MyFork/Trilepton_Selection/TopLFV/')
 parser.add_argument('--n', dest = 'NAMETAG', default= 'none' )# if 'none' submit everything otherwise specify a tag to submit
 
@@ -63,19 +64,18 @@ nf =40
 
 for key, value in SAMPLES.items():
 #########################################
+<<<<<<< HEAD
     if name != 'none':
         if name  not in key:
             continue
     nf = 40
     for idx, S in enumerate(value[0]):
-        print S
+        #print S
         filelist = GFAL_GetROOTfiles( S ,"srm://maite.iihe.ac.be:8443/srm/managerv2?SFN=" )#"srm://ingrid-se02.cism.ucl.ac.be:8444/srm/managerv2?SFN=/storage/data/cms")
-        for files in filelist:
-        #for subdir, dirs, files in os.walk(S):
-            if value[1]=='data': 
-                nf = 255
-            sequance = [files[i:i+nf] for i in range(0,len(files),nf)]
-            for num,  seq in enumerate(sequance):
+        if value[1]=='data': 
+           nf = 255
+        sequance = [filelist[i:i+nf] for i in range(0,len(filelist),nf)]
+        for num,  seq in enumerate(sequance):
 ###############################
 #                if num<18:
 #                    continue
@@ -83,7 +83,7 @@ for key, value in SAMPLES.items():
                 text = ''
                 text += '    TChain* ch    = new TChain("IIHEAnalysis") ;\n'
                 for filename in seq:
-                    text += '    ch ->Add("' + S+ filename + '");\n'
+                    text += '    ch ->Add("' + filename + '");\n'
                 text += '    MyAnalysis t1(ch);\n'
                 text += '    t1.Loop("'+dire_h+ value[3] + '/' + key +'_' + str(idx) +'_' +str(num)  + '.root", "' + value[1] + '" , "'+ value[2] + '" , "'+ value[3] + '" , "'+ value[4] + '" , ' + value[5] + ' , '+ value[6] + ' , '+ value[7] + ');\n'
                 SHNAME1 = key +'_' + str(idx) +'_' +str(num) + '.C'
@@ -96,7 +96,8 @@ for key, value in SAMPLES.items():
 
                 SHNAME = key +'_' + str(idx) +'_' + str(num) +'.sh'
                 SHFILE="#!/bin/bash\n" +\
-                "cd "+ dire + "\n"+\
+                "cd "+ dire + "\n"+\ 
+                'export X509_USER_PROXY=/afs/cern.ch/user/a/asparker/x509up_u75786' +"\n"+\
                 'g++ -fPIC -fno-var-tracking -Wno-deprecated -D_GNU_SOURCE -O2  -I./../include   '+ rootlib11 +' -ldl  -o ' + SHNAME1.split('.')[0] + ' Jobs/' + SHNAME1+ ' ../lib/main.so ' + rootlib22 + '  -lMinuit -lTreePlayer' + "\n"+\
                 "./" + SHNAME1.split('.')[0]+ "\n"+\
                 'FILE='+ dire_h + value[3] + '/' + key +'_' + str(idx) +'_' +str(num)  + '.root'+ "\n"+\
@@ -106,7 +107,7 @@ for key, value in SAMPLES.items():
                 open('Jobs/'+SHNAME, 'wt').write(SHFILE)
                 os.system("chmod +x "+'Jobs/'+SHNAME)
 #                os.system("qsub -q localgrid  -o STDOUT/" + SHNAME1.split('.')[0] + ".stdout -e STDERR/" + SHNAME1.split('.')[0] + ".stderr " + SHNAME)
-            break
+           #break
     if verbose : 
         print key + ' jobs are made'
    
