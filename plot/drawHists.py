@@ -322,7 +322,7 @@ def compareHists(hists,Fnames, ch = "channel", reg = "region", var="sample", var
 
 year=['2016','2017','2018','All']
 #year=['2017']
-regions=["lll","lllOnZ","lllOffZ","lllB0","lllB1", "lllBgeq2", "lllMetl20", "lllMetg20", "lllMetg20B1", "lllMetg20Jetleq2B1", "lllMetg20Jetgeq1B0", "lllMetg20Jet1B1", "lllMetg20Jet2B1", "lllMetg20Jetgeq3B1", "lllMetg20Jetgeq2B2", "lllDphil1p6", "lllMetg20OnZB0","lllOffZMetg20Jetgeq1Bleq1","lllOnZMetg20Jetgeq1Bleq1"]
+regions=["lll","lllOnZ","lllOffZ","lllOffZB0","lllOffZB1", "lllOffZBgeq2", "lllOffZMetl20", "lllOffZMetg20", "lllOffZMetg20B1", "lllOffZMetg20Jetleq2B1", "lllOffZMetg20Jetgeq1B0", "lllOffZMetg20Jet1B1", "lllOffZMetg20Jet2B1", "lllOffZMetg20Jetgeq3B1", "lllOffZMetg20Jetgeq2B2", "lllDphil1p6", "lllOnZMetg20B0","lllOffZMetg20Jetgeq1Bleq1","lllOnZMetg20Jetgeq1Bleq1"]
 channels=["eee", "emul", "mumumu"];
 variables=["lep1Pt","lep1Eta","lep1Phi","lep2Pt","lep2Eta","lep2Phi","lep3Pt","lep3Eta","lep3Phi",
            "LFVePt","LFVeEta","LFVePhi","LFVmuPt","LFVmuEta","LFVmuPhi","balPt","balEta","balPhi","Topmass",
