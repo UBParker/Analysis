@@ -28,9 +28,9 @@ def cutFlowTable(hists, samples, regions, ch, year,caption='2017', nsig=6):
     table += '\\centering' + "\n"
     table += '\\caption{' + caption +"}\n"
     table += '\\resizebox{\\textwidth}{!}{ \n'
-    table += '\\begin{tabular}{|l|' + ''.join([('' if ('Metl' in c) or ('geqX' in c) or ('leq' in c) or ('lllB' in c) else 'l|') for c in regions]).strip() +'}' + "\n"
+    table += '\\begin{tabular}{|l|' + ''.join([('' if (c!='lll') and (c!='lllOffZ') and (c!='lllMetg20') and (c!='lllOffZMetg20Jetgeq1Bleq1') else 'l|') for c in regions]).strip() +'}' + "\n"
     table += '\\hline' + "\n"
-    table += 'Samples ' + ''.join([('' if ('Metl' in c) or ('geqX' in c) or ('leq' in c) or ('lllB' in c) else ' & '+c) for c in regions]).strip() + '\\\\' + "\n"
+    table += 'Samples ' + ''.join([('' if (c!='lll') and (c!='lllOffZ') and (c!='lllMetg20') and (c!='lllOffZMetg20Jetgeq1Bleq1') else ' & '+c) for c in regions]).strip() + '\\\\' + "\n"
     table += '\\hline' + "\n"
 
     for ids, s in enumerate(samples):
@@ -45,7 +45,7 @@ def cutFlowTable(hists, samples, regions, ch, year,caption='2017', nsig=6):
             continue
         table += s
         for idr, r in enumerate(regions):
-            if ('Metl' not in r) and ('geqX' not in r) and ('leq' not in r) and ('lllB' not in r):
+            if (regions[idr]=='lll') or (regions[idr]=='lllOffZ') or (regions[idr]=='lllMetg20') or (regions[idr]=='lllOffZMetg20Jetgeq1Bleq1'):
                if ids<nsig:
                   if mcSum[idr]==0:
                      mcSum[idr]=1
@@ -56,14 +56,14 @@ def cutFlowTable(hists, samples, regions, ch, year,caption='2017', nsig=6):
     table += '\\hline' + "\n"
     table += 'Prediction '
     for idr, r in enumerate(mcSum):
-        if ('Metl' not in regions[idr]) and ('geqX' not in regions[idr]) and ('leq' not in regions[idr]) and ('lllB' not in regions[idr]):
+        if (regions[idr]=='lll') or (regions[idr]=='lllOffZ') or (regions[idr]=='lllMetg20') or (regions[idr]=='lllOffZMetg20Jetgeq1Bleq1'):
            table += (' & ' + str(round(r,2)))
     table += '\\\\' + "\n"
     table += '\\hline' + "\n"
     if showData:
       table += 'Data '
       for idr, r in enumerate(regions):
-          if ('Metl' not in regions[idr]) and ('geqX' not in regions[idr]) and ('leq' not in regions[idr]) and ('lllB' not in regions[idr]):
+          if (regions[idr]=='lll') or (regions[idr]=='lllOffZ') or (regions[idr]=='lllMetg20') or (regions[idr]=='lllOffZMetg20Jetgeq1Bleq1'):
              table += (' & ' + str(hists[year][0][ch][idr][2].Integral()))
       table += '\\\\' + "\n"
       table += '\\hline' + "\n"
@@ -71,7 +71,7 @@ def cutFlowTable(hists, samples, regions, ch, year,caption='2017', nsig=6):
       for idr, r in enumerate(mcSum):
           if r==0:
              r=0.1
-          if ('Metl' not in regions[idr]) and ('geqX' not in regions[idr]) and ('leq' not in regions[idr]) and ('lllB' not in regions[idr]):
+          if (regions[idr]=='lll') or (regions[idr]=='lllOffZ') or (regions[idr]=='lllMetg20') or (regions[idr]=='lllOffZMetg20Jetgeq1Bleq1'):
              table += (' & ' + str(round(hists[year][0][ch][idr][2].Integral()/r,2)))
       table += '\\\\' + "\n"
       table += '\\hline' + "\n"
@@ -191,10 +191,14 @@ def stackPlots(hists, SignalHists, Fnames, ch = "channel", reg = "region", year=
     Label_lumi.SetNDC()
     Label_lumi.SetTextFont(42)
     Label_lumi.Draw("same")
-    Label_channel = ROOT.TLatex(0.2,0.8,year +" / "+ch+" ("+reg+")")
+    Label_channel = ROOT.TLatex(0.2,0.8,year +" / "+ch)
     Label_channel.SetNDC()
     Label_channel.SetTextFont(42)
     Label_channel.Draw("same")
+    Label_region = ROOT.TLatex(0.2,0.75,reg)
+    Label_region.SetNDC()
+    Label_region.SetTextFont(42)
+    Label_region.Draw("same")
 
     if showData:
        legend.AddEntry(dummy,Fnames[0],'ep')
@@ -210,7 +214,7 @@ def stackPlots(hists, SignalHists, Fnames, ch = "channel", reg = "region", year=
     legend3.Draw("same")
 
     if (showData) and (hs.GetStack().Last().Integral()>0):
-        Label_DM = ROOT.TLatex(0.2,0.75,"Data/MC = " + str(round(hists[0].Integral()/hs.GetStack().Last().Integral(),2)))
+        Label_DM = ROOT.TLatex(0.2,0.7,"Data/MC = " + str(round(hists[0].Integral()/hs.GetStack().Last().Integral(),2)))
         Label_DM.SetNDC()
         Label_DM.SetTextFont(42)
         Label_DM.Draw("same")
@@ -316,17 +320,17 @@ def compareHists(hists,Fnames, ch = "channel", reg = "region", var="sample", var
     del canvas
     gc.collect()
 
-#year=['2016','2017','2018','All']
-year=['2017']
-regions=["lll","lllOnZ","lllOffZ","lllB0","lllB1", "lllBgeq2", "lllMetl20", "lllMetg20", "lllMetg20B1", "lllMetg20Jetleq2B1", "lllMetg20Jetgeq1B0", "lllMetg20Jet1B1", "lllMetg20Jet2B1", "lllMetg20Jetgeq3B1", "lllMetg20Jetgeq2B2",  "lllDphil1p6", "lllMetg20OnZB0", "lllMetg20Jetgeq1Bleq1"]
+year=['2016','2017','2018','All']
+#year=['2017']
+regions=["lll","lllOnZ","lllOffZ","lllB0","lllB1", "lllBgeq2", "lllMetl20", "lllMetg20", "lllMetg20B1", "lllMetg20Jetleq2B1", "lllMetg20Jetgeq1B0", "lllMetg20Jet1B1", "lllMetg20Jet2B1", "lllMetg20Jetgeq3B1", "lllMetg20Jetgeq2B2", "lllDphil1p6", "lllMetg20OnZB0","lllOffZMetg20Jetgeq1Bleq1","lllOnZMetg20Jetgeq1Bleq1"]
 channels=["eee", "emul", "mumumu"];
 variables=["lep1Pt","lep1Eta","lep1Phi","lep2Pt","lep2Eta","lep2Phi","lep3Pt","lep3Eta","lep3Phi",
            "LFVePt","LFVeEta","LFVePhi","LFVmuPt","LFVmuEta","LFVmuPhi","balPt","balEta","balPhi","Topmass",
            "lllM","lllPt","lllHt","lllMt","jet1Pt","jet1Eta","jet1Phi","njet","nbjet","Met","MetPhi","nVtx",
            "llZM","llZPt","llZDr","llZDphi","LFVTopmass","llM","llPt","llDr","llDphi",
-           "Ht","Ms","ZlDr","ZlDphi","JeDr","JmuDr"]
+           "Ht","Ms","ZlDr","ZlDphi","JeDr","JmuDr","tM"]
 #variables=["lep1Pt"]
-variablesName=["Leading lepton p_{T} [GeV]","Leading lepton #eta","Leading lepton #varphi","2nd-Leading lepton p_{T} [GeV]","2nd-Leading lepton #eta","2nd-Leading lepton #varphi","3rd-Leading lepton p_{T} [GeV]","3rd-Leading lepton #eta","3rd-Leading lepton #varphi","cLFV electron p_{T} [GeV]","cLFV electron #eta","cLFV electron #varphi","cLFV muon p_{T} [GeV]","cLFV muon #eta","cLFV muon #varphi","Bachelor lepton p_{T} [GeV]","Bachelor lepton #eta","Bachelor lepton #varphi","Standard top mass [GeV]","M(lll) [GeV]","p_{T}(lll) [GeV]","H_{t}(lll) [GeV]","M_{t}(lll) [GeV]","Leading jet p_{T} [GeV]","Leading jet #eta","Leading jet #varphi","Number of jets","Number of b-tagged jets","MET [GeV]","#varphi(MET)","Number of vertices", "M(ll) (OSSF) [GeV]", "p_{T}(ll) (OSSF) [GeV]", "Dr(ll) (OSSF)", "Dphi(ll) (OSSF)", "cLFV top mass [GeV]", "M(ll) (cLFV) [GeV]", "p_{T}(ll) (cLFV) [GeV]", "Dr(ll) (cLFV)", "Dphi(ll) (cLFV)", "H_{t} [GeV]", "M_{s} [GeV]", "Dr(Zl)", "Dphi(Zl)", "Dr(Je)", "Dr(Jmu)"]
+variablesName=["Leading lepton p_{T} [GeV]","Leading lepton #eta","Leading lepton #varphi","2nd-Leading lepton p_{T} [GeV]","2nd-Leading lepton #eta","2nd-Leading lepton #varphi","3rd-Leading lepton p_{T} [GeV]","3rd-Leading lepton #eta","3rd-Leading lepton #varphi","cLFV electron p_{T} [GeV]","cLFV electron #eta","cLFV electron #varphi","cLFV muon p_{T} [GeV]","cLFV muon #eta","cLFV muon #varphi","Bachelor lepton p_{T} [GeV]","Bachelor lepton #eta","Bachelor lepton #varphi","Standard top mass [GeV]","M(lll) [GeV]","p_{T}(lll) [GeV]","H_{t}(lll) [GeV]","M_{t}(lll) [GeV]","Leading jet p_{T} [GeV]","Leading jet #eta","Leading jet #varphi","Number of jets","Number of b-tagged jets","MET [GeV]","#varphi(MET)","Number of vertices", "M(ll) (OSSF) [GeV]", "p_{T}(ll) (OSSF) [GeV]", "Dr(ll) (OSSF)", "Dphi(ll) (OSSF)", "cLFV top mass [GeV]", "M(ll) (cLFV) [GeV]", "p_{T}(ll) (cLFV) [GeV]", "Dr(ll) (cLFV)", "Dphi(ll) (cLFV)", "H_{t} [GeV]", "M_{s} [GeV]", "Dr(Zl)", "Dphi(Zl)", "Dr(Je)", "Dr(Jmu)", "M_{T} (W candidate)"]
 
 
 # set up an argument parser
@@ -383,7 +387,7 @@ for numyear, nameyear in enumerate(year):
                     else:
                         HH.append(Hists[numyear][f][numch][numreg][numvar])
 
-                stackPlots(HH, HHsignal, SamplesName, namech, namereg, nameyear,namevar,variablesName[numvar])
+#                stackPlots(HH, HHsignal, SamplesName, namech, namereg, nameyear,namevar,variablesName[numvar])
 
 le = '\\documentclass{article}' + "\n"
 le += '\\usepackage{rotating}' + "\n"
@@ -405,7 +409,7 @@ for numreg, namereg in enumerate(regions):
             if 'LFV' in Samples[f] or 'TTbar' in Samples[f]:
                 HH.append(Hists[0][f][1][numreg][numvar])
                 HHname.append(SamplesName[f])
-        compareHists(HH,HHname, 'emul', namereg,namevar,variablesName[numvar])
+#        compareHists(HH,HHname, 'emul', namereg,namevar,variablesName[numvar])
 
 for numreg, namereg in enumerate(regions):
     for numvar, namevar in enumerate(variables):
@@ -416,4 +420,4 @@ for numreg, namereg in enumerate(regions):
                 Hists[0][f][0][numreg][numvar].SetLineColor(colors[f])
                 HH.append(Hists[0][f][0][numreg][numvar])
                 HHname.append(SamplesName[f])
-        compareHists(HH,HHname, 'eee', namereg,namevar,variablesName[numvar])
+#        compareHists(HH,HHname, 'eee', namereg,namevar,variablesName[numvar])

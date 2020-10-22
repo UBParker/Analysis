@@ -29,6 +29,16 @@ mc2017_samples['2017_LFVStVecU'] = [['/pnfs/iihe/cms/store/user/rgoldouz/TopLfvF
 mc2017_samples['2017_LFVTtVecC'] = [['/pnfs/iihe/cms/store/user/rgoldouz/TopLfvFullSim/2017/IIHE_Ntuple/ntuple_SMEFTfr_TT_vector_emutc/'], 'mc','','2017', '','0.032'  ,'41.53','500000']
 mc2017_samples['2017_LFVTtVecU'] = [['/pnfs/iihe/cms/store/user/rgoldouz/TopLfvFullSim/2017/IIHE_Ntuple/ntuple_SMEFTfr_TT_vector_emutu/'], 'mc','','2017', '','0.032','41.53','498000']
 
+mc2017_samples['2017_LFVStScalarC'] = [['/pnfs/iihe/cms/store/user/rgoldouz/TopLfvFullSim/2017/IIHE_Ntuple/ntuple_SMEFTfr_ST_clequ1_emutc/'], 'mc','','2017', '','0.008' ,'41.53','500000']
+mc2017_samples['2017_LFVStScalarU'] = [['/pnfs/iihe/cms/store/user/rgoldouz/TopLfvFullSim/2017/IIHE_Ntuple/ntuple_SMEFTfr_ST_clequ1_emutu/'], 'mc','','2017', '','0.102' ,'41.53','500000']
+mc2017_samples['2017_LFVTtScalarC'] = [['/pnfs/iihe/cms/store/user/rgoldouz/TopLfvFullSim/2017/IIHE_Ntuple/ntuple_SMEFTfr_TT_clequ1_emutc/'], 'mc','','2017', '','0.004'  ,'41.53','500000']
+mc2017_samples['2017_LFVTtScalarU'] = [['/pnfs/iihe/cms/store/user/rgoldouz/TopLfvFullSim/2017/IIHE_Ntuple/ntuple_SMEFTfr_TT_clequ1_emutu/'], 'mc','','2017', '','0.004','41.53','500000']
+
+mc2017_samples['2017_LFVStTensorC'] = [['/pnfs/iihe/cms/store/user/rgoldouz/TopLfvFullSim/2017/IIHE_Ntuple/ntuple_SMEFTfr_ST_clequ3_emutc/'], 'mc','','2017', '','0.187' ,'41.53','500000']
+mc2017_samples['2017_LFVStTensorU'] = [['/pnfs/iihe/cms/store/user/rgoldouz/TopLfvFullSim/2017/IIHE_Ntuple/ntuple_SMEFTfr_ST_clequ3_emutu/'], 'mc','','2017', '','1.9' ,'41.53','500000']
+mc2017_samples['2017_LFVTtTensorC'] = [['/pnfs/iihe/cms/store/user/rgoldouz/TopLfvFullSim/2017/IIHE_Ntuple/ntuple_SMEFTfr_TT_clequ3_emutc/'], 'mc','','2017', '','0.1876'  ,'41.53','500000']
+mc2017_samples['2017_LFVTtTensorU'] = [['/pnfs/iihe/cms/store/user/rgoldouz/TopLfvFullSim/2017/IIHE_Ntuple/ntuple_SMEFTfr_TT_clequ3_emutu/'], 'mc','','2017', '','0.1876','41.53','500000']
+
 data2017_samples['2017_B_MuonEG'] = [['/pnfs/iihe/cms/store/user/xgao/samples-20191203/data/2017/MuonEG/crab_MuonEG_runB/191204_020507/0000/'], 'data','MuonEG','2017', 'B','1','1','1']
 data2017_samples['2017_C_MuonEG'] = [['/pnfs/iihe/cms/store/user/xgao/samples-20191203/data/2017/MuonEG/crab_MuonEG_runC/191204_020526/0000/','/pnfs/iihe/cms/store/user/xgao/samples-20191203/data/2017/MuonEG/crab_MuonEG_runC/191204_020526/0001/'], 'data','MuonEG','2017', 'C','1','1','1']
 data2017_samples['2017_D_MuonEG'] = [['/pnfs/iihe/cms/store/user/xgao/samples-20191203/data/2017/MuonEG/crab_MuonEG_runD/191204_020545/0000/'], 'data','MuonEG','2017', 'D','1','1','1']
