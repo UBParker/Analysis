@@ -28,9 +28,9 @@ def cutFlowTable(hists, samples, regions, ch, year,caption='2017', nsig=6):
     table += '\\centering' + "\n"
     table += '\\caption{' + caption +"}\n"
     table += '\\resizebox{\\textwidth}{!}{ \n'
-    table += '\\begin{tabular}{|l|' + ''.join([('' if (c!='lll') and (c!='lllOffZ') and (c!='lllMetg20') and (c!='lllOffZMetg20Jetgeq1Bleq1') else 'l|') for c in regions]).strip() +'}' + "\n"
+    table += '\\begin{tabular}{|l|' + ''.join([('' if (c!='lll') and (c!='lllOffZ') and (c!='lllOffZMetg20') and (c!='lllOffZMetg20Jetgeq1Bleq1') else 'l|') for c in regions]).strip() +'}' + "\n"
     table += '\\hline' + "\n"
-    table += 'Samples ' + ''.join([('' if (c!='lll') and (c!='lllOffZ') and (c!='lllMetg20') and (c!='lllOffZMetg20Jetgeq1Bleq1') else ' & '+c) for c in regions]).strip() + '\\\\' + "\n"
+    table += 'Samples ' + ''.join([('' if (c!='lll') and (c!='lllOffZ') and (c!='lllOffZMetg20') and (c!='lllOffZMetg20Jetgeq1Bleq1') else ' & '+c) for c in regions]).strip() + '\\\\' + "\n"
     table += '\\hline' + "\n"
 
     for ids, s in enumerate(samples):
@@ -45,7 +45,7 @@ def cutFlowTable(hists, samples, regions, ch, year,caption='2017', nsig=6):
             continue
         table += s
         for idr, r in enumerate(regions):
-            if (regions[idr]=='lll') or (regions[idr]=='lllOffZ') or (regions[idr]=='lllMetg20') or (regions[idr]=='lllOffZMetg20Jetgeq1Bleq1'):
+            if (regions[idr]=='lll') or (regions[idr]=='lllOffZ') or (regions[idr]=='lllOffZMetg20') or (regions[idr]=='lllOffZMetg20Jetgeq1Bleq1'):
                if ids<nsig:
                   if mcSum[idr]==0:
                      mcSum[idr]=1
@@ -56,14 +56,14 @@ def cutFlowTable(hists, samples, regions, ch, year,caption='2017', nsig=6):
     table += '\\hline' + "\n"
     table += 'Prediction '
     for idr, r in enumerate(mcSum):
-        if (regions[idr]=='lll') or (regions[idr]=='lllOffZ') or (regions[idr]=='lllMetg20') or (regions[idr]=='lllOffZMetg20Jetgeq1Bleq1'):
+        if (regions[idr]=='lll') or (regions[idr]=='lllOffZ') or (regions[idr]=='lllOffZMetg20') or (regions[idr]=='lllOffZMetg20Jetgeq1Bleq1'):
            table += (' & ' + str(round(r,2)))
     table += '\\\\' + "\n"
     table += '\\hline' + "\n"
     if showData:
       table += 'Data '
       for idr, r in enumerate(regions):
-          if (regions[idr]=='lll') or (regions[idr]=='lllOffZ') or (regions[idr]=='lllMetg20') or (regions[idr]=='lllOffZMetg20Jetgeq1Bleq1'):
+          if (regions[idr]=='lll') or (regions[idr]=='lllOffZ') or (regions[idr]=='lllOffZMetg20') or (regions[idr]=='lllOffZMetg20Jetgeq1Bleq1'):
              table += (' & ' + str(hists[year][0][ch][idr][2].Integral()))
       table += '\\\\' + "\n"
       table += '\\hline' + "\n"
@@ -71,7 +71,7 @@ def cutFlowTable(hists, samples, regions, ch, year,caption='2017', nsig=6):
       for idr, r in enumerate(mcSum):
           if r==0:
              r=0.1
-          if (regions[idr]=='lll') or (regions[idr]=='lllOffZ') or (regions[idr]=='lllMetg20') or (regions[idr]=='lllOffZMetg20Jetgeq1Bleq1'):
+          if (regions[idr]=='lll') or (regions[idr]=='lllOffZ') or (regions[idr]=='lllOffZMetg20') or (regions[idr]=='lllOffZMetg20Jetgeq1Bleq1'):
              table += (' & ' + str(round(hists[year][0][ch][idr][2].Integral()/r,2)))
       table += '\\\\' + "\n"
       table += '\\hline' + "\n"
@@ -92,6 +92,8 @@ def stackPlots(hists, SignalHists, Fnames, ch = "channel", reg = "region", year=
         hists[num].SetBinContent(hists[num].GetXaxis().GetNbins(), hists[num].GetBinContent(hists[num].GetXaxis().GetNbins()) + hists[num].GetBinContent(hists[num].GetXaxis().GetNbins()+1))
     for num in range(len(SignalHists)):
         SignalHists[num].SetBinContent(SignalHists[num].GetXaxis().GetNbins(),SignalHists[num].GetBinContent(SignalHists[num].GetXaxis().GetNbins()) + SignalHists[num].GetBinContent(SignalHists[num].GetXaxis().GetNbins()+1))
+        if num>0:
+            SignalHists[num].Scale(10)
     for num in range(1,len(hists)):
         hs.Add(hists[num])
 
@@ -175,18 +177,24 @@ def stackPlots(hists, SignalHists, Fnames, ch = "channel", reg = "region", year=
     dummy.Draw("AXISSAMEY+")
     dummy.Draw("AXISSAMEX+")
 
-    Lumi = '137.42'
+    Lumi = '137'
     if (year == '2016'):
         Lumi = '35.92'
     if (year == '2017'):
         Lumi = '41.53'
     if (year == '2018'):
         Lumi = '59.97'
-    label_cms="CMS Preliminary"
+    label_cms="CMS"
     Label_cms = ROOT.TLatex(0.15,0.92,label_cms)
     Label_cms.SetNDC()
     Label_cms.SetTextFont(61)
     Label_cms.Draw()
+    label_cms1="Work in Progress"
+    Label_cms1 = ROOT.TLatex(0.22,0.92,label_cms1)
+    Label_cms1.SetNDC()
+    Label_cms1.SetTextSize(0.042);
+    Label_cms1.SetTextFont(52)
+    Label_cms1.Draw()
     Label_lumi = ROOT.TLatex(0.71,0.92,Lumi+" fb^{-1} (13 TeV)")
     Label_lumi.SetNDC()
     Label_lumi.SetTextFont(42)
@@ -208,7 +216,11 @@ def stackPlots(hists, SignalHists, Fnames, ch = "channel", reg = "region", year=
         else:
            legend2.AddEntry(hists[num],Fnames[num],'F')
     for H in range(len(SignalHists)):
-        legend3.AddEntry(SignalHists[H], Fnames[len(hists)+H],'L')
+        if H==0:
+           legend3.AddEntry(SignalHists[H], Fnames[len(hists)+H],'L')
+        else:
+           legend3.AddEntry(SignalHists[H], Fnames[len(hists)+H]+" (x10)",'L')
+
     legend.Draw("same")
     legend2.Draw("same")
     legend3.Draw("same")
@@ -321,7 +333,7 @@ def compareHists(hists,Fnames, ch = "channel", reg = "region", var="sample", var
     gc.collect()
 
 year=['2016','2017','2018','All']
-#year=['2017']
+#year=['All']
 regions=["lll","lllOnZ","lllOffZ","lllOffZB0","lllOffZB1", "lllOffZBgeq2", "lllOffZMetl20", "lllOffZMetg20", "lllOffZMetg20B1", "lllOffZMetg20Jetleq2B1", "lllOffZMetg20Jetgeq1B0", "lllOffZMetg20Jet1B1", "lllOffZMetg20Jet2B1", "lllOffZMetg20Jetgeq3B1", "lllOffZMetg20Jetgeq2B2", "lllDphil1p6", "lllOnZMetg20B0","lllOffZMetg20Jetgeq1Bleq1","lllOnZMetg20Jetgeq1Bleq1"]
 channels=["eee", "emul", "mumumu"];
 variables=["lep1Pt","lep1Eta","lep1Phi","lep2Pt","lep2Eta","lep2Phi","lep3Pt","lep3Eta","lep3Phi",
@@ -347,6 +359,9 @@ HistAddress = ARGS.LOCATION
 Samples = ['data.root','TTV.root','WZ.root', 'ZZ.root', 'TTbar.root', 'others.root', 'LFVStVecU.root', 'LFVTtVecU.root']
 SamplesName = ['data','TTV','WZ', 'ZZ', 'TTbar', 'others', 'ST_vector_emutu', 'TT_vector_emutu']
 SamplesNameLatex = ['data', 'TTV', 'WZ', 'ZZ', 'TTbar', 'others', 'ST\_vector\_emutu', 'TT\_vector\_emutu']
+#Samples = ['data.root','DYg50.root','DYl50.root', 'Fake.root', 'LFVStVecU.root', 'LFVTtVecU.root']
+#SamplesName = ['data','DY50','DY10to50', 'Others', 'ST_vector_emutu', 'TT_vector_emutu']
+#SamplesNameLatex = ['data', 'DY50', 'DY10to50', 'Others', 'ST\_vector\_emutu', 'TT\_vector\_emutu']
 
 colors =  [ROOT.kBlack,ROOT.kYellow,ROOT.kGreen,ROOT.kBlue-3,ROOT.kRed-4,ROOT.kOrange-3, ROOT.kOrange-6, ROOT.kCyan-6]
 
@@ -387,7 +402,7 @@ for numyear, nameyear in enumerate(year):
                     else:
                         HH.append(Hists[numyear][f][numch][numreg][numvar])
 
-#                stackPlots(HH, HHsignal, SamplesName, namech, namereg, nameyear,namevar,variablesName[numvar])
+                stackPlots(HH, HHsignal, SamplesName, namech, namereg, nameyear,namevar,variablesName[numvar])
 
 le = '\\documentclass{article}' + "\n"
 le += '\\usepackage{rotating}' + "\n"

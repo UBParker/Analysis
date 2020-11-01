@@ -137,10 +137,12 @@ def stackPlotsError(hists, SignalHists,error, errorRatio, Fnames, ch = "channel"
     if not os.path.exists('sys/'+year + '/' + ch +'/'+reg):
        os.makedirs('sys/'+year + '/' + ch +'/'+reg)
     hs = ROOT.THStack("hs","")
-#    for num in range(len(hists)):
-#        hists[num].SetBinContent(hists[num].GetXaxis().GetNbins(), hists[num].GetBinContent(hists[num].GetXaxis().GetNbins()) + hists[num].GetBinContent(hists[num].GetXaxis().GetNbins()+1))
-#    for num in range(len(SignalHists)):
-#        SignalHists[num].SetBinContent(SignalHists[num].GetXaxis().GetNbins(),SignalHists[num].GetBinContent(SignalHists[num].GetXaxis().GetNbins()) + SignalHists[num].GetBinContent(SignalHists[num].GetXaxis().GetNbins()+1))
+    for num in range(len(hists)):
+        hists[num].SetBinContent(hists[num].GetXaxis().GetNbins(), hists[num].GetBinContent(hists[num].GetXaxis().GetNbins()) + hists[num].GetBinContent(hists[num].GetXaxis().GetNbins()+1))
+    for num in range(len(SignalHists)):
+        SignalHists[num].SetBinContent(SignalHists[num].GetXaxis().GetNbins(),SignalHists[num].GetBinContent(SignalHists[num].GetXaxis().GetNbins()) + SignalHists[num].GetBinContent(SignalHists[num].GetXaxis().GetNbins()+1))
+        if num>0:
+            SignalHists[num].Scale(10)
     for num in range(1,len(hists)):
         hs.Add(hists[num])
 
@@ -230,18 +232,24 @@ def stackPlotsError(hists, SignalHists,error, errorRatio, Fnames, ch = "channel"
     error.SetFillStyle(3004)
     error.Draw("2")
 
-    Lumi = '137.42'
+    Lumi = '137'
     if (year == '2016'):
         Lumi = '35.92'
     if (year == '2017'):
         Lumi = '41.53'
     if (year == '2018'):
         Lumi = '59.97'
-    label_cms="CMS Preliminary"
+    label_cms="CMS"
     Label_cms = ROOT.TLatex(0.15,0.92,label_cms)
     Label_cms.SetNDC()
     Label_cms.SetTextFont(61)
     Label_cms.Draw()
+    label_cms1="Work in Progress"
+    Label_cms1 = ROOT.TLatex(0.22,0.92,label_cms1)
+    Label_cms1.SetNDC()
+    Label_cms1.SetTextSize(0.042);
+    Label_cms1.SetTextFont(52)
+    Label_cms1.Draw()
     Label_lumi = ROOT.TLatex(0.71,0.92,Lumi+" fb^{-1} (13 TeV)")
     Label_lumi.SetNDC()
     Label_lumi.SetTextFont(42)
@@ -264,7 +272,10 @@ def stackPlotsError(hists, SignalHists,error, errorRatio, Fnames, ch = "channel"
            legend2.AddEntry(hists[num],Fnames[num],'F')
     legend2.AddEntry(error,'Stat. #oplus syst. ','F')
     for H in range(len(SignalHists)):
-        legend3.AddEntry(SignalHists[H], Fnames[len(hists)+H],'L')
+        if H==0:
+            legend3.AddEntry(SignalHists[H], Fnames[len(hists)+H],'L')
+        else:
+            legend3.AddEntry(SignalHists[H], Fnames[len(hists)+H]+" (x10)",'L')
     legend.Draw("same")
     legend2.Draw("same")
     legend3.Draw("same")
