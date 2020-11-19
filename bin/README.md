@@ -1,6 +1,15 @@
 # README
 
 
+# To submit nano condor jobs, first make the jobs (add a name tage from the input file if you want to make a specific job or set this to None to make all jobs):
+
+# python makenanopostprocJobs.py
+
+# Then submit them ( set same name tag as the jobs you just made )
+
+# python submitnanopostprocJobs.py
+
+
 # If you need the ntuples in a new location for some reason you can use the following scripts :
 
 # To Copy all files
