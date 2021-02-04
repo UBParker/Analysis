@@ -1,4 +1,5 @@
 #define MyAnalysis_cxx
+//#include "../include/Python.h"
 #include "../include/MyAnalysis.h"
 #include "../include/PU_reWeighting.h"
 #include "../include/lepton_candidate.h"
@@ -146,7 +147,7 @@ float topPt(float pt){
   return (0.973 - (0.000134 * pt) + (0.103 * exp(pt * (-0.0118))));  
 }
 
-void MyAnalysis::Loop(TString fname, TString data, TString dataset ,TString year, TString run, float xs, float lumi, float Nevent)
+void MyAnalysis::Loop(TString fname, TString data, TString dataset ,TString year, TString run, float xs, float lumi, float Nevent, TObject JetSmearer)
 {
 
   Double_t ptBins[11] = {30., 40., 60., 80., 100., 150., 200., 300., 400., 500., 1000.};
@@ -884,6 +885,14 @@ void MyAnalysis::Loop(TString fname, TString data, TString dataset ,TString year
       }
     
     //jets
+    //PyObject* myModuleString = PyString_FromString((char*)"PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetSmearer");
+    //PyObject* myModule = PyImport_Import(myModuleString);
+
+      // PyObject* myFunction = PyObject_GetAttrString(myModule,(char*)"jetSmearer");
+
+
+
+
     selectedJets = new std::vector<jet_candidate*>();
     selectedJets_copy = new std::vector<jet_candidate*>();
     bool jetlepfail;
@@ -892,16 +901,14 @@ void MyAnalysis::Loop(TString fname, TString data, TString dataset ,TString year
           cout << "loop over Jet  number  " << l << " has pt  " << Jet_pt[l] << " and eta " <<  Jet_eta[l] << endl;   
           cout << "mass  " << Jet_mass[l] << " phi   " << Jet_phi[l] << endl  ;   
       }
-      if(data == "mc" && ((Jet_pt)[l] <30 || abs((Jet_eta)[l]) > 2.4)) continue;
-      /// ??? xwhat is jet_smeared_pt in nano? 
-      //if(data == "mc" && ((Jet_pt)[l] <30 || abs((Jet_eta)[l]) > 2.4)) continue;
+      float JetSmeared_pt = (Jet_pt)[l];
+      //PyObject* args = PyTuple_Pack(1, (Jet_pt)[l]);
+      //PyObject* myResult = PyObject_CallObject(myFunction, args);
 
-
+      //				    //	getSmearedJetPt(self, jet, genJet, rho)
+      if(data == "mc" && (JetSmeared_pt <30 || abs((Jet_eta)[l]) > 2.4)) continue;
       if(data == "data" && ((Jet_pt)[l] <30 || abs((Jet_eta)[l]) > 2.4)) continue;
 
-      //if(year == "2016" && !(Jet_isJetIDTightLepVeto_2016)[l]) continue;
-      //if(year == "2017" && !(Jet_isJetIDLepVeto_2017)[l]) continue;
-      //if(year == "2018" && !(Jet_isJetIDLepVeto_2018)[l]) continue;
       if( (Jet_jetId)[l] < 6 ) continue;
       // jet ID of 6 is tight with lep veto
       // https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookNanoAOD

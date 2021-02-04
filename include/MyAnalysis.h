@@ -449,7 +449,7 @@ public :
    virtual Int_t    GetEntry(Long64_t entry);
    virtual Long64_t LoadTree(Long64_t entry);
    virtual void     Init(TTree *tree);
-   virtual void     Loop(TString, TString, TString, TString, TString, Float_t,Float_t,Float_t);
+   virtual void     Loop(TString, TString, TString, TString, TString, Float_t,Float_t,Float_t, TObject );
    virtual Bool_t   Notify();
    virtual void     Show(Long64_t entry = -1);
 };
