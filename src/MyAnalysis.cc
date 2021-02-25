@@ -701,7 +701,7 @@ void MyAnalysis::Loop(TString fname, TString data, TString dataset ,TString year
       
       if (verbose ){
          cout << "loop over Muon  number  " << l << " has pt  " << muPtSFRochester * Muon_pt[l] << " and eta " <<  Muon_eta[l] << endl;
-         cout << "Muon_genPartIdx[l] = genMuIdx = " << genMuIdx  << "  abs(GenPart_pdgId[Muon_genPartIdx[l]])   " <<  abs(GenPart_pdgId[Muon_genPartIdx[l]]) << endl;
+         //cout << "Muon_genPartIdx[l] = genMuIdx = " << genMuIdx  << "  abs(GenPart_pdgId[Muon_genPartIdx[l]])   " <<  abs(GenPart_pdgId[Muon_genPartIdx[l]]) << endl;
          cout << "Muon_pfRelIso04_all[l] = " << Muon_pfRelIso04_all[l] <<endl;
       }
         
